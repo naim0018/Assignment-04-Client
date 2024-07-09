@@ -1,3 +1,4 @@
+import Navbar from "./components/component/Navbar/Navbar"
 
 
 function App() {
@@ -5,7 +6,8 @@ function App() {
 
   return (
     <>
-    
+      <Navbar/>
+      
     </>
   )
 }
