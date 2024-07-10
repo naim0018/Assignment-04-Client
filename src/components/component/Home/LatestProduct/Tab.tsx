@@ -1,34 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import ProductsTabData from "./ProductsTabData";
+import { useGetAllProductsQuery } from "../../../../redux/api/productsApi";
 
 const Tab = () => {
-  const [activeTab, setActiveTab] = useState("");
-
-  const plantCategory = [
-    "Flowers",
-    "Fruits",
-    "Bamboo",
-    "Fertilizers",
-    "Plants Pot",
-    "Gardening Tools",
-    "Soils",
-  ];
+  const {data,isLoading} = useGetAllProductsQuery(undefined)
+  const [activeTab, setActiveTab] = useState("Flowers");
+  if(isLoading){
+    return<p>Loading</p>
+  }
+  // const plantCategory = [
+  //   "Flowers",
+  //   "Fruits",
+  //   "Bamboo",
+  //   "Fertilizers",
+  //   "Plants Pot",
+  //   "Gardening Tools",
+  //   "Soils",
+  // ];
   return (
     <div className="container mx-auto">
       <h1 className="text-4xl font-medium text-center py-10">Products</h1>
       <div className=" flex justify-end ">
-        {plantCategory.map((category) => (
-          <div className="">
+        {data?.data?.map((product : any) => (
+          <div className="font-semibold" key={product._id}>
             <a
-              onClick={() => setActiveTab(category)}
+              onClick={() => setActiveTab(product.category)}
               role="tab"
               className={` ${
-                activeTab === `${category}`
-                  ? " border-b-blue-500 text-blue-700   "
+                activeTab === `${product.category}`
+                  ? "border-b-blue-500 text-blue-600 "
                   : ""
-              } tab text-lg border-b-2 p-2 `}
+              } tab text-lg border-b-2 `}
             >
-              {category}
+              {product.category}
             </a>
           </div>
         ))}

@@ -1,4 +1,5 @@
-import ShowProducts from "./ShowProducts"
+
+
 
 const ProductsTabData :React.FC<{productCategory:string}>= ({productCategory}) => {
     console.log(productCategory)

@@ -1,5 +1,6 @@
-import { Button } from "../../ui/button"
-import Rating from "../UI/Ratings"
+import { Button } from "../../../ui/button"
+import Rating from "../Ratings"
+
 
 const ProductCard = () => {
     const product = {
@@ -15,7 +16,7 @@ const ProductCard = () => {
         <img src={product.img} alt="" className="size-52"/>
         <h4 className="text-xl font-medium ">{product.title}</h4>
         <p className="font-bold text-green-800"> {product.price}</p>
-        <p className="grid items-center justify-center p-1"><Rating rating={product.rating}/></p>
+        <p className="grid items-center justify-center p-1"><Rating rating={product.rating} type={''}/></p>
       
         <Button className="">View Details</Button>
     </div>
