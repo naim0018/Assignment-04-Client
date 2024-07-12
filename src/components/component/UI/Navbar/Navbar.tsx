@@ -14,7 +14,7 @@ const Navbar = () => {
       </li>
         </NavLink>
     
-      <NavLink to="/products">
+      <NavLink to="/product">
         <li className="group flex  cursor-pointer flex-col">
         Products<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
       </li>
@@ -23,6 +23,11 @@ const Navbar = () => {
       <NavLink to="/about">
         <li className="group flex  cursor-pointer flex-col">
         About<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+      </li>
+        </NavLink>
+      <NavLink to="/admin">
+        <li className="group flex  cursor-pointer flex-col">
+        Admin<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
       </li>
         </NavLink>
       <NavLink to="/cart">
@@ -39,7 +44,9 @@ const Navbar = () => {
     <nav className="flex items-center justify-between bg-[#393E46] px-4 py-2 text-white">
       <div className="flex items-center justify-between  w-full container mx-auto">
     <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
+      <NavLink to={'home'}>
       <h2>Nursery</h2>
+      </NavLink>
     </div>
     <ul className="hidden items-center justify-between gap-10 md:flex">
       {navLinks}

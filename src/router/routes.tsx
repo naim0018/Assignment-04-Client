@@ -6,6 +6,9 @@ import About from "../pages/About";
 import Carts from "../pages/Carts";
 import ProductDetails from "../components/component/ProductDetails/ProductDetails";
 import ErrorPage from "../components/component/UI/ErrorPage";
+import Admin from "../pages/Admin";
+import AddProduct from "../components/component/Admin/AddProduct";
+import AllProduct from "../components/component/Admin/AllProduct";
 
 
 export const router = createBrowserRouter([
@@ -15,6 +18,7 @@ export const router = createBrowserRouter([
         errorElement:<ErrorPage/>,
         children:[
             {
+                index:true,
                 path:'home',
                 element:<Home/>
             },
@@ -24,7 +28,7 @@ export const router = createBrowserRouter([
                 element:<Products/>
             },
             {
-                path:'product/:id',
+                path:'product-details/:id',
                 element:<ProductDetails/>
             },
             {
@@ -35,7 +39,21 @@ export const router = createBrowserRouter([
                 path:'cart',
                 element:<Carts/>
             },
-
+            
         ]
-    }
+    },
+    {
+        path:'/admin',
+        element:<Admin/>,
+        children:[
+            {
+                path:'add-product',
+                element:<AddProduct/>
+            },
+            {
+                path:'all-product',
+                element:<AllProduct/>
+            }
+        ]
+    },
 ])

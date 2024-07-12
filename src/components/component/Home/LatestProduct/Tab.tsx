@@ -4,25 +4,25 @@ import ProductsTabData from "./ProductsTabData";
 import { useGetAllProductsQuery } from "../../../../redux/api/productsApi";
 
 const Tab = () => {
-  const {data,isLoading} = useGetAllProductsQuery(undefined)
   const [activeTab, setActiveTab] = useState("Flowers");
+  const {data,isLoading} = useGetAllProductsQuery({})
+  
   if(isLoading){
     return<p>Loading</p>
   }
-  // const plantCategory = [
-  //   "Flowers",
-  //   "Fruits",
-  //   "Bamboo",
-  //   "Fertilizers",
-  //   "Plants Pot",
-  //   "Gardening Tools",
-  //   "Soils",
-  // ];
+
+  const category = data?.data?.reduce((acc, product) => {
+    if (!acc.some(item => item.category === product.category)) {
+        acc.push({ category: product.category, img: product.img });
+    }
+    return acc;
+}, []);
+
   return (
     <div className="container mx-auto">
-      <h1 className="text-4xl font-medium text-center py-10">Products</h1>
+      <h1 className="text-4xl font-medium text-center py-10">Latest Products</h1>
       <div className=" flex justify-end ">
-        {data?.data?.map((product : any) => (
+        {category.map((product : any) => (
           <div className="font-semibold" key={product._id}>
             <a
               onClick={() => setActiveTab(product.category)}

@@ -7,6 +7,7 @@ import Rating from "../UI/Ratings"
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const {id} =useParams()
+  // console.log(id)
   const {data ,isLoading,isError} = useGetSingleProductsQuery(id)
   
   if(isLoading){
@@ -30,10 +31,8 @@ const ProductDetails = () => {
  
   return (
     <div className="container mx-auto space-y-10 min-h-screen">
-    {/* {isLoading && <Loadingui />} */}
-    {
-      // productId &&
-      <div className=" grid  space-y-10 p-10  border md:grid-cols-2  ">
+ 
+      <div className=" grid  space-y-10 p-10  md:grid-cols-2">
         <div className="grid">
           <img
           src={img}
@@ -71,7 +70,6 @@ const ProductDetails = () => {
                 <TbCurrencyTaka />
                 {price}
               </p>
-            
             <div className="flex items-center gap-4 mt-8">
               <div className="">
                 <div className="border border-black w-fit  flex items-center gap-4">
@@ -103,14 +101,10 @@ const ProductDetails = () => {
           </div> 
         </div>
       </div>
-    }
+    
 
   <div className="grid grid-cols-5 py-10">
 
-    {/* <div className=" space-y-5">
-      <h3 className="text-2xl font-light text-black ">Related Products</h3>
-      <RelatedProducts />
-    </div> */}
   </div>
   </div>
   

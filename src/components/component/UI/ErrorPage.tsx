@@ -13,7 +13,7 @@ const ErrorPage = () => {
    
     <NavLink to="/home"
       
-      className="mt-6 inline-block rounded btn  px-5 py-3 text-sm font-medium text-white  focus:outline-none "
+      className="mt-6 inline-block rounded btn  px-5 py-3 text-sm font-medium text-black  focus:outline-none "
     >
       Go Back Home
     </NavLink>

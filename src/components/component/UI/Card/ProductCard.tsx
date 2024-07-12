@@ -1,24 +1,26 @@
-import { Button } from "../../../ui/button"
+import { NavLink } from "react-router-dom"
+import { TProduct } from "../../../../types"
+import { TbCurrencyTaka } from "react-icons/tb";
+
 import Rating from "../Ratings"
 
 
-const ProductCard = () => {
-    const product = {
-            "title": "Rose Plant",
-            "price": 15.99,
-            "rating": 4.7,
-            "img": "https://nurseryplantsbd.com/wp-content/uploads/2022/02/Flower-Plants.webp",
-            "stock": 50,
-           
-    }
+const ProductCard:React.FC<{product:TProduct}> = ({product}) => {
+  const {img,title,price,rating,_id,category} =product
+    
   return (
-    <div className="border w-fit text-center space-y-1 px-3 p-5">
-        <img src={product.img} alt="" className="size-52"/>
-        <h4 className="text-xl font-medium ">{product.title}</h4>
-        <p className="font-bold text-green-800"> {product.price}</p>
-        <p className="grid items-center justify-center p-1"><Rating rating={product.rating} type={''}/></p>
+    <div className="border border-black  rounded w-fit text-center space-y-1 px-3 p-5">
+        <img src={img} alt="" className="size-52 border"/>
+        <h4 className="text-xl font-medium ">{title}</h4>
+        <div className="flex items-center justify-evenly">
+        <p className="font-bold text-green-800"> {category}</p>
+        <p className="font-bold text-green-800 flex items-center justify-center"><TbCurrencyTaka /> {price}</p>
+        </div>
+        <p className="grid items-center justify-center p-1"><Rating rating={rating} type={''}/></p>
       
-        <Button className="">View Details</Button>
+      <NavLink to={`/product-details/${_id}`}>
+        <button className="btn btn-sm btn-outline hover:bg-black hover:text-white">View Details</button>
+      </NavLink>
     </div>
   )
 }

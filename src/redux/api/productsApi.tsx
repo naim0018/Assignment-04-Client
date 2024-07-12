@@ -4,10 +4,10 @@ export const productsApi = baseApi.injectEndpoints({
     endpoints:(builder)=>({
         getAllProducts:builder.query({
             
-            query:()=>({
+            query:(arg)=>({
                 url:'/product',
                 method:'GET',
-                // params:arg
+                params:arg
             })
         }),
         getSingleProducts:builder.query({

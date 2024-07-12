@@ -11,7 +11,7 @@ const Support = () => {
             <LiaShippingFastSolid className='text-sky-500 text-5xl'/>
         </div>
         <div className="flex flex-col items-center justify-center">
-            <h3>Free Shipping</h3>
+            <h3 className="text-xl font-bold">Free Shipping</h3>
             <p>Free Shipping Over $100</p>
         </div>
     </div>
@@ -20,7 +20,7 @@ const Support = () => {
             <MdOutlinePayment className='text-sky-500 text-5xl'/>
         </div>
         <div className="flex flex-col items-center justify-center">
-            <h3>Secure Payment</h3>
+            <h3 className="text-xl font-bold">Secure Payment</h3>
             <p>100% Secure Payment</p>
         </div>
     </div>
@@ -29,7 +29,7 @@ const Support = () => {
             <MdSupportAgent className='text-sky-500 text-5xl'/>
         </div>
         <div className="flex flex-col items-center justify-center">
-            <h3>24/7 Support</h3>
+            <h3 className="text-xl font-bold">24/7 Support</h3>
             <p>Top quality Support</p>
         </div>
     </div>
@@ -38,7 +38,7 @@ const Support = () => {
             <BiSolidLike  className='text-sky-500 text-5xl'/>
         </div>
         <div className="flex flex-col items-center justify-center">
-            <h3>Quality Products</h3>
+            <h3 className="text-xl font-bold">Quality Products</h3>
             <p>We insure Product Quality</p>
         </div>
     </div>

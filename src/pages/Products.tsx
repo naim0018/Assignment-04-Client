@@ -1,6 +1,8 @@
+import ProductsContainer from "../components/component/Products/ProductsContainer"
+
 const Products = () => {
   return (
-    <div>Products</div>
+    <div className="min-h-screen"><ProductsContainer/></div>
   )
 }
 export default Products

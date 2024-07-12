@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import Navbar from "./components/component/Navbar/Navbar"
-import Footer from "./components/component/Footer/Footer"
+import Navbar from "./components/component/UI/Navbar/Navbar"
+import Footer from "./components/component/UI/Footer/Footer"
 
 
 function App() {
@@ -8,8 +8,10 @@ function App() {
 
   return (
     <>
+    <div className="min-h-screen">
       <Navbar/>
       <Outlet/>
+    </div>
       <Footer/>
     </>
   )
