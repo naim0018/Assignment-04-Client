@@ -11,8 +11,8 @@ const ProductsTabData :React.FC<{productCategory:string}>= ({productCategory}) =
   }
 
   return (
-    <div className="m-5 p-5 ">
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <div className=" py-5 ">
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 border">
      {
       data?.data?.map((product :TProduct)=><ProductCard product={product}/>)
      }

@@ -1,13 +1,15 @@
+
 import ProductsData from "./ProductsData"
 import ProductsSideNav from "./ProductsSideNav"
 
 const ProductsLayout = () => {
+ 
   return (
-    <div className="grid grid-cols-6 gap-5 items-start  mt-20 container mx-auto min-h-screen ">
-        <div className="">
-      <ProductsSideNav />
+    <div className="grid justify-center sm:flex gap-5 md:justify-between  mt-20 container mx-auto min-h-screen ">
+        <div className="w-72">
+      <ProductsSideNav/>
         </div>
-      <div className="col-span-5 w-full">
+      <div className="">
         <ProductsData/>
       </div>
     </div>
