@@ -5,6 +5,6 @@ export type TProduct={
     category:string,
     img:string,
     price:number,
-    rating:number,
+    rating?:number,
     stock:number
 }

@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./api/BaseApi";
 import productsSlice from "./features/productsSlice";
+import cartSlice from "./features/cartSlice";
 
 export const store = configureStore({
     reducer: {
        
         [baseApi.reducerPath]: baseApi.reducer,
-        product: productsSlice
+        product: productsSlice,
+        cart:cartSlice
 
 
       },

@@ -3,22 +3,29 @@ import { useGetSingleProductsQuery } from "../../../redux/api/productsApi"
 import { TbCurrencyTaka } from "react-icons/tb"
 import { useState } from "react"
 import Rating from "../UI/Ratings"
+import ErrorPage from "../UI/ErrorPage"
+import Loading from "../UI/Loading/Loading"
+import { useDispatch } from "react-redux"
+import { useAppSelector } from "../../../redux/hooks"
+import { addToCart } from "../../../redux/features/cartSlice"
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const {id} =useParams()
   // console.log(id)
-  const {data ,isLoading,isError} = useGetSingleProductsQuery(id)
-  
+  const {data ,isLoading,isError} = useGetSingleProductsQuery(id as string)
+  const dispatch = useDispatch()
+  const {carts} = useAppSelector(state => state.cart)
+  console.log(carts)
   if(isLoading){
-   return <p>Loading</p>
+   return <Loading/>
   }
   if(isError){
-    return <p>Error</p>
+    return <ErrorPage/>
   }
   
-
-  const {title,price,rating,img,stock,category} = data.data
+  const cartItem = data.data
+  const {title,price,rating,img,stock,category} = cartItem
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -29,6 +36,21 @@ const ProductDetails = () => {
     setQuantity((count) => count + 1);
   };
  
+
+  const handelAddToCart = ()=>{
+    try {
+      const cartData ={
+      ...cartItem,
+        quantity
+      }
+      dispatch(addToCart(cartData))
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
   return (
     <div className="container mx-auto space-y-10 min-h-screen">
  
@@ -92,7 +114,7 @@ const ProductDetails = () => {
               </div>
 
               <button
-                // onClick={handelAddToCart}
+                onClick={handelAddToCart}
                 className="btn btn-lg  hover:bg-emerald-400 "
               >
                 Add to Cart

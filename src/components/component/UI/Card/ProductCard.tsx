@@ -1,21 +1,45 @@
 import { NavLink } from "react-router-dom";
 import { TProduct } from "../../../../types";
 import { TbCurrencyTaka } from "react-icons/tb";
-
-import Rating from "../Ratings";
 import { useState } from "react";
 import UpdateProduct from "../../Products/UpdateProduct";
+import { useDeleteProductMutation } from "../../../../redux/api/productsApi";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
+import Ratings from "../Ratings";
 
 const ProductCard: React.FC<{ product: TProduct }> = ({ product }) => {
   const [openModal, setOpenModal] = useState(false);
   const { img, title, price, rating, _id, category } = product;
+  const [deleteProduct] = useDeleteProductMutation();
 
-  const handleDelete=()=>{
-
-  }
+  const handleDelete = (id: string) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteProduct(id);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      toast("Some");
+    }
+  };
   return (
-  
-       <div className="border max-w-full  border-black rounded-xl shadow-lg ">
+    <div className="border max-w-full  border-black rounded-xl shadow-lg ">
       <div className="w-full border-b-4 border-r-4 border-transparent  group  hover:border-b-4 hover:border-r-4 hover:border-b-black hover:border-r-black rounded-lg overflow-hidden transition-all  ease-in-out flex flex-col h-full ">
         {/* image  */}
         <div className="grid relative  pr-3  pl-3  pt-2 rounded">
@@ -25,48 +49,46 @@ const ProductCard: React.FC<{ product: TProduct }> = ({ product }) => {
             alt=""
           />
         </div>
-      
+
         {/* title  */}
         <div className="px-5 py-5 text-center space-y-2 flex-grow">
           <h2 className="text-lg font-medium">{title}</h2>
 
           <p className="text-slate-500">Category: {category}</p>
-            <div className="text-2xl font-medium flex items-center justify-center text-green-500">
-              {/* <span className="text-lg font-medium text-black">Price: </span> */}
-              <TbCurrencyTaka />
-              {price}
-
-            </div>
+          <p className="flex items-center justify-center">
+            <Ratings rating={rating as number} />
+          </p>
+          <div className="text-2xl font-medium flex items-center justify-center text-green-500">
+            {/* <span className="text-lg font-medium text-black">Price: </span> */}
+            <TbCurrencyTaka />
+            {price}
+          </div>
         </div>
-         
+
         <div className="px-5">
           <hr className="border border-black" />
         </div>
         <div className="py-3 ">
-          
           <div className="flex items-center justify-center mt-5 gap-5">
-          <div className=" border rounded-lg border-black">
-            <NavLink to={`/cardDetails/${_id}`}>
-              <button className="btn bg-white border border-b-2 border-r-2 border-transparent  hover:bg-white hover:border-r-2 hover:border-b-2 hover:border-r-black hover:border-b-black">
-                Details
-              </button>
-            </NavLink>
-          </div>
-            
-            
-                <div className=" border rounded-lg border-black hover:border-r-red-600 hover:border-b-red-600">
+            {/* Details Button */}
+            <div className=" border rounded-lg border-black">
+              <NavLink to={`/product-details/${_id}`}>
+                <button className="btn bg-white border border-b-2 border-r-2 border-transparent  hover:bg-white hover:border-r-2 hover:border-b-2 hover:border-r-black hover:border-b-black">
+                  Details
+                </button>
+              </NavLink>
+            </div>
 
-                <button
-                onClick={handleDelete}
+            {/* Delete Button */}
+            <div className=" border rounded-lg border-black hover:border-r-red-600 hover:border-b-red-600">
+              <button
+                onClick={() => handleDelete(_id)}
                 className="btn border border-b-2 border-r-2 border-transparent  hover:bg-white hover:border-r-2 hover:border-b-2 hover:border-r-red-600 hover:border-b-red-600 bg-red-500 text-white hover:text-red-600"
               >
                 Delete
               </button>
-                </div>
-              
-            
-
-        
+            </div>
+      {/* UpdateButton */}
             <div className="border rounded-lg border-black">
               <button
                 className="btn border border-b-2 border-r-2 border-transparent  hover:bg-white hover:border-r-2 hover:border-b-2 hover:border-r-green-600 hover:border-b-green-600 bg-green-500 text-white hover:text-green-600"
@@ -108,22 +130,17 @@ const ProductCard: React.FC<{ product: TProduct }> = ({ product }) => {
                       ></path>
                     </g>
                   </svg>
-                  <UpdateProduct product={product} setOpenModal={setOpenModal}/>
-                
+                  <UpdateProduct
+                    product={product}
+                    setOpenModal={setOpenModal}
+                  />
                 </div>
               </div>
-
-
-
             </div>
-            
-         
-
           </div>
         </div>
       </div>
     </div>
-  
   );
 };
 export default ProductCard;

@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState ={
     category : '',
-    sortOption:'createdAt'
+    sortOption:'price'
 }
 
 const productSlice = createSlice({

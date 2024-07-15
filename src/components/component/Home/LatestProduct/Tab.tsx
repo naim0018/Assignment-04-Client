@@ -3,13 +3,14 @@ import { useState } from "react";
 import ProductsTabData from "./ProductsTabData";
 import { useGetAllProductsQuery } from "../../../../redux/api/productsApi";
 import { TProduct } from "../../../../types";
+import Loading from "../../UI/Loading/Loading";
 
 const Tab = () => {
   const [activeTab, setActiveTab] = useState("Flowers");
   const {data,isLoading} = useGetAllProductsQuery({})
   
   if(isLoading){
-    return<p>Loading</p>
+    return <Loading/>
   }
 
   const category = data?.data?.reduce((acc:[{category:string,img:string}], product:TProduct) => {
